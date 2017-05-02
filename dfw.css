@@ -1,0 +1,51 @@
+body {
+    background-color: #66CCFF;
+    margin: 0px;
+}
+
+#main {
+    border: 5px solid grey; 
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.line {
+    width: 100%;
+    height: 10%;
+}
+
+.list {
+    width: 100%;
+    height: 80%;
+}
+
+.block {
+    background-color:white;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
+.line .block {
+    width: 10%;
+    height: 100%;
+    float: left;    
+}
+
+.list .block {
+    width: 100%;
+    height: 12.5%;
+}
+
+.left, .right  {
+    width: 10%;
+    height: 100%;
+}
+
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
