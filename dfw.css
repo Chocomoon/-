@@ -3,6 +3,11 @@ body {
     margin: 0px;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
 #main {
     border: 5px solid grey; 
     width: 800px;
@@ -48,4 +53,11 @@ body {
 }
 .left {
     float: left;
+}
+
+#btn {
+    padding: 5px;
+    margin: 10px 0;
+    font-size: 15px;
+    border-radius: 6px;
 }
