@@ -61,3 +61,14 @@ p {
     font-size: 15px;
     border-radius: 6px;
 }
+
+.money ul{
+    list-style-type: none;
+    display: block;
+    overflow: hidden;
+}
+.money li {
+    float:left;
+    width:33.33%;
+    text-align: center;
+}

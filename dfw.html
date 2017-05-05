@@ -55,18 +55,23 @@
             <div class="block" id="18"></div>        
     </div>
     <br>
-    <p id="money">现金：10000</p>
+    <div class="money">
+        <ul>
+            <li id="money1">player1现金：10000</li>
+            <li id="money2">player2现金：10000</li>
+            <li id="money3">player3现金：10000</li>
+        </ul>        
+    </div>
+    
     <button type="button" id="btn">按此进行R点</button>
     <p id="result">本次R点结果为：</p>
 
-    <!--<p id="result1"></p>-->
+    
     <p id="count">请player1进行R点</p>
     
 
     <script>
-        var count = 0;
-        // var money = 10000;
-        // var move = 0;
+        var count = 0;        
         function Blo(owner) {
             this.owner = owner
         }
@@ -82,55 +87,249 @@
         var blo31 = new Blo("bank"); 
         document.getElementById("btn").onclick = function() {clickon()};
         function clickon() {
-            if(money>0) {
-            document.getElementById(move).style.backgroundColor = "white";
-            var r = Math.floor(Math.random()*6 )+ 1;
-            document.getElementById("result").innerHTML = "本次R点结果为：" + r;
-            move += r;
-            if (move>=36) {
-                move = move % 36;
-                money += 200;
-                alert("经过起点，奖励200金币");
-                };
-            switch (move) {
-                case 5:
-                  money += 1;
-                  alert("在马路边捡到一块钱，金币+1");
-                  break;
-                case 10:
-                  money -= 3000;
-                  alert("月底交房租，金币-3000");
-                  break;
-                case 12:
-                  if (blo12.owner === "bank") {                                        
-                      if((confirm("你要使用1000金币购买这栋公寓么？"))==true) {
-                          money -= 1000;
-                          blo12.owner = "cat";
-                          document.getElementById("12").innerHTML = "公寓1：cat";
-                      }
-                  }
-                  break;
-            }
-            // document.getElementById("result1").innerHTML = move;
-            document.getElementById("money").innerHTML = "现金：" + money + "金币";
             switch (count) {
                 case 0:
-                  document.getElementById(move).style.backgroundColor = "red";
+                  if(player1.money>0) {
+                  document.getElementById(player1.move).style.backgroundColor = "white";
+                  var r = Math.floor(Math.random()*6 )+ 1;
+                  document.getElementById("result").innerHTML = "本次R点结果为：" + r;
+                  player1.move += r;
+                  if (player1.move>=36) {
+                      player1.move = player1.move % 36;
+                      player1.money += 200;
+                      alert("player1经过起点，奖励200金币");
+                      };
+                  switch (player1.move) {
+                      case 5:
+                        player1.money += 1;
+                        alert("player1在马路边捡到一块钱，金币+1");
+                        break;
+                      case 10:
+                        player1.money -= 3000;
+                        alert("player1月底交房租，金币-3000");
+                        break;
+                      case 12:
+                        if (blo12.owner === "bank") {                                        
+                            if((confirm("player1,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player1.money -= 1000;
+                                blo12.owner = "player1";
+                                document.getElementById("12").innerHTML = "公寓1：player1";
+                            }
+                        } else if (blo12.owner === "player2"){
+                                player1.money -= 200;
+                                player2.money += 200;                                
+                                alert("player1交住宿费200金币给player2");
+                            } else if (blo12.owner === "player3") {
+                                player1.money -= 200;
+                                player3.money += 200;
+                                alert("player1交住宿费200金币给player3");
+                            }
+                        break;
+                      case 23:
+                        if (blo23.owner === "bank") {                                        
+                            if((confirm("player1,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player1.money -= 800;
+                                blo23.owner = "player1";
+                                document.getElementById("23").innerHTML = "公寓2：player1";
+                            }
+                        } else if (blo23.owner === "player2"){
+                                player1.money -= 150;
+                                player2.money += 150;                                
+                                alert("player1交住宿费150金币给player2");
+                            } else if (blo23.owner === "player3") {
+                                player1.money -= 150;
+                                player3.money += 150;                                
+                                alert("player1交住宿费150金币给player3");
+                            }
+                        break;
+                      case 31:
+                        if (blo31.owner === "bank") {                                        
+                            if((confirm("player1,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player1.money -= 1200;
+                                blo31.owner = "player1";
+                                document.getElementById("31").innerHTML = "公寓3：player1";
+                            }
+                        } else if (blo31.owner === "player2"){
+                                player1.money -= 250;
+                                player2.money += 250;     
+                                alert("player1交住宿费250金币给player2");
+                            } else if (blo31.owner === "player3") {
+                                player1.money -= 250;
+                                player3.money += 250;             
+                                alert("player1交住宿费250金币给player3");
+                            }
+                        break;
+                    }                                
+                  document.getElementById(player1.move).style.backgroundColor = "red";                
+                  } else {alert("player1你破产了，Game Over！");};                              
+                  count = (count+1)%3;
+                  document.getElementById("money1").innerHTML = "player1现金："+ player1.money;
+                  document.getElementById("money2").innerHTML = "player2现金："+ player2.money;
+                  document.getElementById("money3").innerHTML = "player3现金："+ player3.money;
+                  document.getElementById("count").innerHTML = "请player"+(count+1)+"进行R点";
                   break;
                 case 1:
-                  document.getElementById(move).style.backgroundColor = "green";
+                  if(player2.money>0) {
+                  document.getElementById(player2.move).style.backgroundColor = "white";
+                  var r = Math.floor(Math.random()*6 )+ 1;
+                  document.getElementById("result").innerHTML = "本次R点结果为：" + r;
+                  player2.move += r;
+                  if (player2.move>=36) {
+                      player2.move = player2.move % 36;
+                      player2.money += 200;
+                      alert("player2经过起点，奖励200金币");
+                      };
+                  switch (player2.move) {
+                      case 5:
+                        player2.money += 1;
+                        alert("player2在马路边捡到一块钱，金币+1");
+                        break;
+                      case 10:
+                        player2.money -= 3000;
+                        alert("player2月底交房租，金币-3000");
+                        break;
+                      case 12:
+                        if (blo12.owner === "bank") {                                        
+                            if((confirm("player2,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player2.money -= 1000;
+                                blo12.owner = "player2";
+                                document.getElementById("12").innerHTML = "公寓1：player2";
+                            }
+                        } else if (blo12.owner === "player1"){
+                                player2.money -= 200;
+                                player1.money += 200;                                
+                                alert("player2交住宿费200金币给player1");
+                            } else if (blo12.owner === "player3") {
+                                player2.money -= 200;
+                                player3.money += 200;
+                                alert("player2交住宿费200金币给player3");
+                            }
+                        break;
+                      case 23:
+                        if (blo23.owner === "bank") {                                        
+                            if((confirm("player2,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player2.money -= 800;
+                                blo23.owner = "player2";
+                                document.getElementById("23").innerHTML = "公寓2：player2";
+                            }
+                        } else if (blo23.owner === "player1"){
+                                player2.money -= 150;
+                                player1.money += 150;                                
+                                alert("player2交住宿费150金币给player1");
+                            } else if (blo23.owner === "player3") {
+                                player2.money -= 150;
+                                player3.money += 150;                                
+                                alert("player2交住宿费150金币给player3");
+                            }
+                        break;
+                      case 31:
+                        if (blo31.owner === "bank") {                                        
+                            if((confirm("player2,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player2.money -= 1200;
+                                blo31.owner = "player2";
+                                document.getElementById("31").innerHTML = "公寓3：player2";
+                            }
+                        } else if (blo31.owner === "player1"){
+                                player2.money -= 250;
+                                player1.money += 250;     
+                                alert("player2交住宿费250金币给player1");
+                            } else if (blo31.owner === "player3") {
+                                player2.money -= 250;
+                                player3.money += 250;             
+                                alert("player2交住宿费250金币给player3");
+                            }
+                        break;
+                    }                              
+                  document.getElementById(player2.move).style.backgroundColor = "green";                
+                  } else {alert("player2你破产了，Game Over！");};                               
+                  count = (count+1)%3;
+                  document.getElementById("money1").innerHTML = "player1现金："+ player1.money;
+                  document.getElementById("money2").innerHTML = "player2现金："+ player2.money;
+                  document.getElementById("money3").innerHTML = "player3现金："+ player3.money;
+                  document.getElementById("count").innerHTML = "请player"+(count+1)+"进行R点";
                   break;
                 case 2:
-                  document.getElementById(move).style.backgroundColor = "blue";
+                  if(player3.money>0) {
+                  document.getElementById(player3.move).style.backgroundColor = "white";
+                  var r = Math.floor(Math.random()*6 )+ 1;
+                  document.getElementById("result").innerHTML = "本次R点结果为：" + r;
+                  player3.move += r;
+                  if (player3.move>=36) {
+                      player3.move = player2.move % 36;
+                      player3.money += 200;
+                      alert("player3经过起点，奖励200金币");
+                      };
+                  switch (player3.move) {
+                      case 5:
+                        player3.money += 1;
+                        alert("player3在马路边捡到一块钱，金币+1");
+                        break;
+                      case 10:
+                        player3.money -= 3000;
+                        alert("player3月底交房租，金币-3000");
+                        break;
+                      case 12:
+                        if (blo12.owner === "bank") {                                        
+                            if((confirm("player3,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player3.money -= 1000;
+                                blo12.owner = "player3";
+                                document.getElementById("12").innerHTML = "公寓1：player3";
+                            }
+                        } else if (blo12.owner === "player1"){
+                                player3.money -= 200;
+                                player1.money += 200;                                
+                                alert("player3交住宿费200金币给player1");
+                            } else if (blo12.owner === "player2") {
+                                player3.money -= 200;
+                                player2.money += 200;
+                                alert("player3交住宿费200金币给player2");
+                            }
+                        break;
+                      case 23:
+                        if (blo23.owner === "bank") {                                        
+                            if((confirm("player3,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player3.money -= 800;
+                                blo23.owner = "player3";
+                                document.getElementById("23").innerHTML = "公寓2：player3";
+                            }
+                        } else if (blo23.owner === "player1"){
+                                player3.money -= 150;
+                                player1.money += 150;                                
+                                alert("player3交住宿费150金币给player1");
+                            } else if (blo23.owner === "player2") {
+                                player3.money -= 150;
+                                player2.money += 150;                                
+                                alert("player3交住宿费150金币给player2");
+                            }
+                        break;
+                      case 31:
+                        if (blo31.owner === "bank") {                                        
+                            if((confirm("player3,你要使用1000金币购买这栋公寓么？"))==true) {
+                                player3.money -= 1200;
+                                blo31.owner = "player3";
+                                document.getElementById("31").innerHTML = "公寓3：player3";
+                            }
+                        } else if (blo31.owner === "player1"){
+                                player3.money -= 250;
+                                player1.money += 250;     
+                                alert("player3交住宿费250金币给player1");
+                            } else if (blo31.owner === "player2") {
+                                player3.money -= 250;
+                                player2.money += 250;             
+                                alert("player3交住宿费250金币给player2");
+                            }
+                        break;
+                    }                              
+                  document.getElementById(player3.move).style.backgroundColor = "blue";                
+                  } else {alert("player3你破产了，Game Over！");};                             
+                  count = (count+1)%3;
+                  document.getElementById("money1").innerHTML = "player1现金："+ player1.money;
+                  document.getElementById("money2").innerHTML = "player2现金："+ player2.money;
+                  document.getElementById("money3").innerHTML = "player3现金："+ player3.money;
+                  document.getElementById("count").innerHTML = "请player"+(count+1)+"进行R点";
                   break;
-            }            
-            if(money<0) {alert("你破产了，Game Over！");};
-            } else {
-                alert("player"+(count+1)+"你破产了，Game Over！"); 
+            }
             };
-            count = (count+1)%3;
-            document.getElementById("count").innerHTML = "请player"+(count+1)+"进行R点";
-        };
     </script>
 
 </body>
