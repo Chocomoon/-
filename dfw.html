@@ -73,12 +73,12 @@
     <script>
         var count = 0;        
         function Blo(owner) {
-            this.owner = owner
+            this.owner = owner;
         }
         function Player(money, move, name) {
-            this.money=money,
-            this.move=move,
-            this.name=name
+            this.money=money;
+            this.move=move;
+            this.name=name;
         }
         var player1 = new Player(10000, 0, "player1");
         var player2 = new Player(10000, 0, "player2");
@@ -163,7 +163,7 @@
                         document.getElementById(i).style.background = "linear-gradient(to right, red , green , blue)";
                         break;
                       default :
-                        document.getElementById(i).style.backgroundColor = "white";
+                        document.getElementById(i).style.background = "white";
                     }
                 }
             }
@@ -174,10 +174,10 @@
                         document.getElementById(i).style.background = "linear-gradient(to right, red , green)";
                         break;
                       case player3.move:
-                        document.getElementById(i).style.backgroundColor = "blue";
+                        document.getElementById(i).style.background = "blue";
                         break;
                       default :
-                        document.getElementById(i).style.backgroundColor = "white";
+                        document.getElementById(i).style.background = "white";
                     }
                 }
             } else if((player1.move==player3.move) && (player1.move != player2.move)) {
@@ -187,10 +187,10 @@
                         document.getElementById(i).style.background = "linear-gradient(to right, red , blue)";
                         break;
                       case player2.move:
-                        document.getElementById(i).style.backgroundColor = "green";
+                        document.getElementById(i).style.background = "green";
                         break;
                       default :
-                        document.getElementById(i).style.backgroundColor = "white";
+                        document.getElementById(i).style.background = "white";
                     }
                 }
             } else if((player2.move==player3.move) && (player1.move != player2.move)) {
@@ -200,10 +200,10 @@
                         document.getElementById(i).style.background = "linear-gradient(to right, green , blue)";
                         break;
                       case player1.move:
-                        document.getElementById(i).style.backgroundColor = "red";
+                        document.getElementById(i).style.background = "red";
                         break;
                       default :
-                        document.getElementById(i).style.backgroundColor = "white";
+                        document.getElementById(i).style.background = "white";
                     }
                 }
             } else{
@@ -213,13 +213,13 @@
                       document.getElementById(i).style.background = "red";
                       break;
                     case player2.move:
-                      document.getElementById(i).style.backgroundColor = "green";
+                      document.getElementById(i).style.background = "green";
                       break;
                     case player3.move:
-                      document.getElementById(i).style.backgroundColor = "blue";
+                      document.getElementById(i).style.background = "blue";
                       break;
                     default :
-                      document.getElementById(i).style.backgroundColor = "white";
+                      document.getElementById(i).style.background = "white";
                 }
             }
             }            
